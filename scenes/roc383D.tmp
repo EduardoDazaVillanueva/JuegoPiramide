@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://mq8k37ipfn6e"]
+
+[ext_resource type="Script" path="res://scripts/rock.gd" id="1_7ji22"]
+[ext_resource type="Texture2D" uid="uid://q5hcxncu6vik" path="res://assets/hearthPrueba.png" id="1_abbml"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3cxi"]
+size = Vector2(37, 38)
+
+[node name="rock" type="RigidBody2D" groups=["RigidBody"]]
+position = Vector2(-2, 0)
+collision_layer = 2
+collision_mask = 2
+linear_damp = 0.5
+angular_damp = 1.0
+script = ExtResource("1_7ji22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f3cxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_abbml")

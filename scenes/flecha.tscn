@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://fk3hca6etypt"]
+
+[ext_resource type="Script" path="res://scripts/flecha.gd" id="1_0easn"]
+[ext_resource type="Texture2D" uid="uid://fxgn5h8vtn1m" path="res://assets/arrow.png" id="2_fi1qa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwbkh"]
+
+[node name="Flecha" type="Area2D" groups=["bala"]]
+collision_mask = 3
+script = ExtResource("1_0easn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.00242531, 4.22597e-05)
+rotation = 0.802851
+scale = Vector2(0.0930548, 0.0930548)
+texture = ExtResource("2_fi1qa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bala"]]
+shape = SubResource("CircleShape2D_vwbkh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

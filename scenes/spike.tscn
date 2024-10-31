@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://5gso7i6orof"]
+
+[ext_resource type="Texture2D" uid="uid://beypmif33evfx" path="res://assets/map/pinchos.png" id="1_4rtfl"]
+[ext_resource type="Script" path="res://scripts/spike.gd" id="1_fq6od"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f21bl"]
+atlas = ExtResource("1_4rtfl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g1ur"]
+atlas = ExtResource("1_4rtfl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqhy8"]
+atlas = ExtResource("1_4rtfl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwoew"]
+atlas = ExtResource("1_4rtfl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx6wu"]
+atlas = ExtResource("1_4rtfl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p5ow"]
+atlas = ExtResource("1_4rtfl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u36o1"]
+atlas = ExtResource("1_4rtfl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y17b1"]
+atlas = ExtResource("1_4rtfl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oax5m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f21bl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g1ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqhy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwoew")
+}],
+"loop": false,
+"name": &"guardar",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx6wu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p5ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u36o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y17b1")
+}],
+"loop": false,
+"name": &"sacar",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_714yj"]
+size = Vector2(5, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rckxl"]
+radius = 71.1758
+
+[node name="spike" type="Node2D"]
+script = ExtResource("1_fq6od")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oax5m")
+animation = &"guardar"
+
+[node name="damage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_714yj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rckxl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4rtfl")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

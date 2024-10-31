@@ -1,0 +1,4 @@
+[signal arg="enter_npc"]
+npc1: hello
+npc1: I´m Npc1.
+[signal arg="exit_npc"]
